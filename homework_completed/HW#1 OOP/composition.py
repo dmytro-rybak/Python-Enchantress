@@ -1,13 +1,11 @@
 class Laptop:
-    def __init__(self):
-        os1 = OperatingSystem("Ubuntu", "20.04", "64-bit", "GNOME")
-        os2 = OperatingSystem("Windows", "7", "64-bit", "Windows Aero")
-        self.operating_systems = [os1, os2]
+    def __init__(self, operating_systems):
+        self.operating_systems = operating_systems
 
-    def printOS(self):
-        print(self.operating_systems)
+    def display_info(self):
+        print("Operating systems on this laptop:")
         for os in self.operating_systems:
-            print(f"{os.name} {os.version}, {os.bitness}, gui:{os.gui}")
+            print(" ", os)
 
 
 class OperatingSystem:
@@ -17,7 +15,14 @@ class OperatingSystem:
         self.bitness = bitness
         self.gui = gui
 
+    def __str__(self):
+        return f"{self.name} {self.version}, {self.bitness}, gui:{self.gui}"
+
 
 if __name__ == '__main__':
-    laptop = Laptop()
-    laptop.printOS()
+    laptop1 = Laptop([OperatingSystem("Ubuntu", "20.04", "64-bit", "Gnome"),
+                     OperatingSystem("Windows", "7", "64-bit", "Windows Aero")])
+    laptop1.display_info()
+    print("")
+    laptop2 = Laptop([OperatingSystem("Linux Mint", "20", "64-bit", "Cinnamon")])
+    laptop2.display_info()
